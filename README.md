@@ -1,7 +1,5 @@
 # TaskManager
 
-http://localhost:8080/
-
 Services to support tasks
   - add task
   - get sorted list of task
@@ -10,10 +8,11 @@ Services to support tasks
   - user login (not implemented yet)
   - UI to show list of tasks (not implemented yet)
 
-######Command to run this service on your local machine
+Command to run this service on your local machine
 
 ```
 mvn clean spring-boot:run
 ```
+http://localhost:8080/
 
 
