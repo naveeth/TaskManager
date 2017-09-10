@@ -1,0 +1,7 @@
+resources:
+ producer:
+    threadCorePoolSize: 2
+    threadMaxPoolSize: 4
+ consumer:
+    threadCorePoolSize: 1
+    threadMaxPoolSize: 2
