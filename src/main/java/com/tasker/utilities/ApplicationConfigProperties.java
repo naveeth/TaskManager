@@ -27,7 +27,7 @@ public class ApplicationConfigProperties {
             return 2;
         }
 
-        return Integer.parseInt(coreThreadPoolSize);
+        return Integer.parseInt(coreConsumerThreadPoolSize);
     }
 
     public void setCoreConsumerThreadPoolSize(String coreConsumerThreadPoolSize) {

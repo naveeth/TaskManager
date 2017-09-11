@@ -25,11 +25,11 @@ public class AppConfig {
 
     @Bean(name = "consumerTaskExecutor")
     public ThreadPoolTaskExecutor consumerTaskExecutor() {
-        ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
-        pool.setCorePoolSize(appConfiguration.getCoreConsumerThreadPoolSize());
-        pool.setMaxPoolSize(appConfiguration.getMaxConsumerThreadPoolSize());
-        pool.setWaitForTasksToCompleteOnShutdown(true);
-        return pool;
+        ThreadPoolTaskExecutor consumerPool = new ThreadPoolTaskExecutor();
+        consumerPool.setCorePoolSize(appConfiguration.getCoreConsumerThreadPoolSize());
+        consumerPool.setMaxPoolSize(appConfiguration.getMaxConsumerThreadPoolSize());
+        consumerPool.setWaitForTasksToCompleteOnShutdown(true);
+        return consumerPool;
     }
 
 }

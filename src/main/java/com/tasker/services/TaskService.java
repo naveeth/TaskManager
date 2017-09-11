@@ -23,6 +23,7 @@ public class TaskService {
     @Autowired
     TaskDao taskDao;
 
+    //Add task to the in memory priority queue
     public boolean addTask(Task task) {
         boolean result = false;
         if (task != null) {
@@ -31,10 +32,12 @@ public class TaskService {
         return result;
     }
 
+    //Get list of task in sorted order
     public List<Task> getTasks() {
         return taskDao.getTasks();
     }
 
+    //Add tasks to the in memory priority queue
     public boolean addTasks(List<Task> taskList) {
         boolean result = false;
         try {

@@ -43,6 +43,8 @@ public class TaskController {
         StringBuilder validationResult = taskValidationService.verifyTaskDetail(task);
         if (validationResult.length() == 0 && taskService.addTask(task)) {
             result = "Task has been added successfully!!";
+        } else {
+            result = validationResult.length()>0? validationResult.toString() : result;
         }
         return ResponseEntity.ok().body(result);
     }

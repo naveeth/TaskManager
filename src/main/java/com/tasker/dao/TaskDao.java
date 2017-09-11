@@ -1,7 +1,9 @@
 package com.tasker.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -34,6 +36,7 @@ public class TaskDao {
     @Qualifier("consumerTaskExecutor")
     ThreadPoolTaskExecutor consumerExecutor;
 
+    //Add task through producer thread pool
     public boolean add(Task task) {
         boolean result = false;
         if (task != null) {
@@ -62,12 +65,14 @@ public class TaskDao {
         }
     }
 
+    //Get the list of tasks in sorted order
     public List<Task> getTasks() {
         Task[] taskArray = taskPriorityQueueInMemory.toArray(new Task[taskPriorityQueueInMemory.size()]);
         Arrays.sort(taskArray);
         return Arrays.asList(taskArray);
     }
 
+    //Poll the task from priority queue using consumer thread pool
     public StringBuilder consumeTasks() {
         List<Future<StringBuilder>> taskResult = new ArrayList<Future<StringBuilder>>();
         StringBuilder output = new StringBuilder();
@@ -79,7 +84,8 @@ public class TaskDao {
                 Thread.sleep(300);
             }
             output = result.get();
-            System.out.println("-- Consumed task -- " + output.toString());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            System.out.println("-- Consumed tasks @ -- " + sdf.format(new Date()) + " " + output.toString());
         }
         catch (InterruptedException e) {
             e.printStackTrace();
@@ -90,6 +96,7 @@ public class TaskDao {
         return output;
     }
 
+    //Add tasks to priority through producer thread pool
     public boolean addTasks(List<Task> taskList) throws ExecutionException, InterruptedException {
         boolean result = true;
         if (taskList != null) {

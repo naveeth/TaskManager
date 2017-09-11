@@ -28,6 +28,9 @@ public class Task implements Comparable<Task> {
         this.status = status;
     }
 
+    public Task() {
+
+    }
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         return "Title - " + title + " \nDescription - " + description + " \nreminderDate - " + sdf.format(reminderDate)

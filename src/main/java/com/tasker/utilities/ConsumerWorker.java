@@ -24,15 +24,12 @@ public class ConsumerWorker implements Callable<StringBuilder> {
         StringBuilder sb = new StringBuilder();
         while (true) {
             if (taskPriorityBlockingQueue.size() == 0) {
-                return sb.append("Queue is Now Empty!");
+                return sb.append("--- Queue is Now Empty!");
             }
             else {
                 Task topNode = taskPriorityBlockingQueue.peek();
                 if (topNode != null) {
-                    long diff =
-                            new Date().getTime() - topNode.getReminderDate()
-                                    .getTime();
-                    long diffMins = diff / (60 * 1000) % 60;
+                    long diff = new Date().getTime() - topNode.getReminderDate().getTime();
                     long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
                     if (minutes <= 15) {
                         Task polledOutTask = taskPriorityBlockingQueue.take();
